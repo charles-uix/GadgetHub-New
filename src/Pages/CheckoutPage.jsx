@@ -4,6 +4,8 @@ import Logo from "../assets/GadgetHub Logo.png"
 import paymentVector from "../assets/onlinePaymentVector.png"
 import { FaGreaterThan } from "react-icons/fa";
 import CustomerDetailsForm from "../Components/CheckoutPage Components/CustomerDetailsForm"
+import DeliveryDetails from "../Components/CheckoutPage Components/DeliveryDetails"
+import PaymentMethod from "../Components/CheckoutPage Components/PaymentMethod"
 
 export default function CheckoutPage() {
   return (
@@ -30,7 +32,7 @@ export default function CheckoutPage() {
         <h1 className="flex items-center gap-1 text-[16px] text-[#5F6C72]">
                   <Link to="/">Home</Link>
                     <span className="text-[12px] text-[#434545]"><FaGreaterThan /></span>
-                    <Link><span className="text-[#5F6C72]">Cart</span></Link>
+                    <Link to="/cartpage"><span className="text-[#5F6C72]">Cart</span></Link>
                     <span className="text-[12px] text-[#434545]"><FaGreaterThan /></span>
                     <span className="text-[#191C1F]">Checkout</span>
                  </h1>
@@ -38,6 +40,8 @@ export default function CheckoutPage() {
 
         <div>
           <CustomerDetailsForm />
+          <DeliveryDetails />
+          <PaymentMethod />
         </div>
 
         

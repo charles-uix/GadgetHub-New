@@ -39,6 +39,7 @@ export const AuthProvider = ({children})=>{
             setToken(response.data.token)
             console.log("Login successful :" , response.data);
             localStorage.setItem("token", response.data.token)
+            localStorage.setItem("user", JSON.stringify(response.data.user))
 
             return response.data
         } catch (error) {
