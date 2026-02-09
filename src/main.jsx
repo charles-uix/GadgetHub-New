@@ -6,11 +6,15 @@ import ShoppingCartProvider from "./Context/ShoppingCartContext"
 import LikeProvider from "./Context/LikeContext"
 import { ToastContainer } from "react-toastify"
 import { AuthProvider } from "./Context/AuthContext"
+import { AdminProvider } from "./Context/AdminContext"
+import { ProductProvider} from "./Context/ProductContext"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-        <ShoppingCartProvider>
+       <AdminProvider>
+       <ProductProvider>
+          <ShoppingCartProvider>
       <LikeProvider>
          <App />
          <ToastContainer  position="top-center"
@@ -22,6 +26,8 @@ createRoot(document.getElementById('root')).render(
         draggable />
       </LikeProvider>
     </ShoppingCartProvider>
+       </ProductProvider>
+       </AdminProvider>
     </AuthProvider>
   </StrictMode>,
 )

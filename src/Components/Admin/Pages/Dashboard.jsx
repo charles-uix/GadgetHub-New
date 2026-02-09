@@ -4,18 +4,17 @@ import { useNavigate, Link } from "react-router"
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"
 import { motion } from "framer-motion"
 import { IoMdNotificationsOutline } from "react-icons/io";
+import LogoutModal from "../../LogoutModal"
 
 export default function Dashboard() {
       const { user,logout } = useContext(AuthContext)
       const navigate = useNavigate()
-      
+      const [showLogoutModal, setShowLogoutModal] = useState(false)
+
+
       const UserMenu = ()=>{
         const [isOpen, setIsOpen] = useState(false)
-        const handleLogout= ()=>{
-          logout()
-          setIsOpen(false)
-          navigate("/login")
-        }
+
         return (
           <div className="flex relative gap-2">
             <div className="flex gap-2 items-center">
@@ -36,7 +35,10 @@ export default function Dashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }} className="absolute top-full right-0 flex flex-col bg-white rounded-md w-[185px] p-3 z-10 gap-1">
                 <Link to="/settings">Account Settings</Link>
-                <button onClick={handleLogout} className="text-[#E60E0E] text-left">Sign Out</button>
+                <button     onClick={() => {
+                setShowLogoutModal(true)
+                setIsOpen(false)
+              }}className="text-[#E60E0E] text-left">Sign Out</button>
               </motion.div>
             )}
     
@@ -51,6 +53,14 @@ export default function Dashboard() {
                 { user && <UserMenu />}
             </div>
            </div>
+
+                 {showLogoutModal && (
+        <LogoutModal
+          onClose={() => setShowLogoutModal(false)}
+          onConfirm={() => {
+            logout()
+            navigate("/login")
+          }} />)}
         </div>
   )
 }

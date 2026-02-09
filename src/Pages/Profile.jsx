@@ -9,16 +9,19 @@ import { PiSignOut } from "react-icons/pi";
 import Card from "../Components/Wishlist components/WishListCard"
 import { LikeContext } from "../Context/LikeContext"
 import Orders from "../Components/ProfilePageComponents/Orders"
+import LogoutModal from "../Components/LogoutModal"
 
 export default function Profile() {
     const { user, logout } = useContext(AuthContext)
     const [ activeTab, setActiveTab ] = useState("myInfo")
     const { likes, getLikesCount } = useContext(LikeContext)
+    const [showLogoutModal, setShowLogoutModal] = useState(false)
+
 
   return (
     <AppLayout>
-        <div className="container mx-auto px-5 py-10">
-            <div className="grid lg:flex gap-5 py-4 h-auto w-full">
+        <div className="container mx-auto px-5 lg:py-3">
+            <div className="grid lg:flex gap-5 lg:py-4 h-auto w-full">
 
            <div className="w-full lg:w-[367px]">
              <h1 className="text-[28px] font-semibold">Hello <span>{user?.firstName}</span></h1>
@@ -41,7 +44,7 @@ export default function Profile() {
                     <span><IoSettingsOutline size={30} /></span> Account Settings
                 </button>
 
-                 <button onClick={()=> logout()} className={`text-[18px] font-semibold text-[#807D7E] flex gap-2 w-full h-11 items-center pl-5  bg-none border-0 hover:cursor-pointer`}>
+                 <button onClick={()=> setShowLogoutModal(true)} className={`text-[18px] font-semibold text-[#807D7E] flex gap-2 w-full h-11 items-center pl-5  bg-none border-0 hover:cursor-pointer`}>
                     <span><PiSignOut size={30} /></span> Sign Out
                 </button>
             </div>
@@ -75,6 +78,14 @@ export default function Profile() {
            </div>
             </div>
         </div>
+
+        {showLogoutModal && (
+        <LogoutModal 
+          onClose={() => setShowLogoutModal(false)} 
+          onConfirm={logout} // pass logout function
+        />
+      )}
+
     </AppLayout>
   )
 }

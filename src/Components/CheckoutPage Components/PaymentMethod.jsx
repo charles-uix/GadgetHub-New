@@ -13,13 +13,17 @@ export default function PaymentMethod({ onChange }) {
     })
 
 
+    //  useEffect(() => {
+    // if (selectedOption === "creditcard") {
+    //   onChange({ method: selectedOption, cardData })
+    // } else {
+    //   onChange({ method: selectedOption })
+    // }
+    // }, [selectedOption, cardData])
+
      useEffect(() => {
-    if (selectedOption === "creditcard") {
-      onChange({ method: selectedOption, cardData })
-    } else {
-      onChange({ method: selectedOption })
-    }
-    }, [selectedOption, cardData])
+    onChange(selectedOption);
+  }, [selectedOption]);
 
     const handleCardChange = (e) => {
     const { name, value } = e.target
@@ -27,8 +31,8 @@ export default function PaymentMethod({ onChange }) {
     }
 
   return (
-    <form className="p-4 border border-[#E8E6E6]">
-        <h1>Select Payment Method</h1>
+    <form className="p-4 border rounded-md border-[#E8E6E6]">
+        <h1 className="text-[24px] font-semibold">Select Payment Method</h1>
 
         <div
         className={`flex items-center p-3 justify-between my-2 rounded-md h-[54px] w-full 
@@ -128,6 +132,24 @@ export default function PaymentMethod({ onChange }) {
         <label>Pay With Pay Pal</label>
         </div>
         <img src={payPal} alt="" />
+      </div>
+
+      <div
+        className={`flex items-center p-3 justify-between my-2 rounded-md h-[54px] w-full 
+        border-[1.5px] ${selectedOption === "paystack" ? "border-[#6C4CF1]" : "border-[#E8E6E6]"}`}
+      >
+        <div className="flex gap-3">
+            <input
+          type="radio"
+          name="payment"
+          value="paystack"
+          checked={selectedOption === "paystack"}
+          onChange={(e) => setSelectedOption(e.target.value)}
+          className="w-5 h-5 accent-[#6C4CF1]"
+        />
+        <label>Pay With Paystack</label>
+        </div>
+        {/* <img src={payPal} alt="" /> */}
       </div>
     </form>
   )

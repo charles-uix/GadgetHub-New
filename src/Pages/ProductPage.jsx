@@ -77,7 +77,7 @@ export default function ProductPage() {
             <div className="py-2">
                 {searchQuery ? (<h1 className="text-[24px] font-semibold">Search results for “{searchQuery}”</h1>) : (<><h1 className="text-[24px] font-semibold">All Categories</h1><p className="text-[15px]">Showing 1 - 15 of 2000 photos</p></>)}
             </div>
-            <div className="flex items-center gap-3">Sort by <select className="border border-[#E8E6E6] h-[49px] w-[100px] rounded-md text-center font-semibold"><option value="">Newest</option></select></div>
+            <div className="flex items-center lg:gap-3">Sort by <select className="border border-[#E8E6E6] h-[49px] w-[100px] rounded-md text-center font-semibold"><option value="">Newest</option></select></div>
         </div>
 
         <div className="grid lg:flex lg:justify-between py-4 w-full">

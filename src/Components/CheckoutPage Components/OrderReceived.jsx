@@ -16,7 +16,7 @@ export default function OrderReceived({showModal, setShowModal}) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 ">
-      <div  className="bg-white rounded-xl shadow-lg w-[99%] max-w-md p-6 relative flex flex-col items-center gap-3 text-center mx-auto">
+      <div  className="bg-white rounded-md shadow-lg w-[99%] max-w-md p-6 relative flex flex-col items-center gap-3 text-center mx-auto">
          <h1><span className="bg-[#F1FFEC] text-[#009320] rounded-full h-[99px] w-[99px] flex items-center justify-center"><TiTick size={50} /></span></h1>
          <p className="text-[28px] font-semibold">Your Order Has Been Received</p>
          <p className="text-[20px] text-[#686565]">Thank you for placing an order</p>

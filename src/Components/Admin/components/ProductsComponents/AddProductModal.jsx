@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Button from "../../../Button"
 import AddedSuccessModal from "./AddedSuccessModal"
+import { AdminContext } from '../../../../Context/AdminContext'
 
 export default function AddProductModal({showModal, setShowModal}) {
+      const { addProduct } = useContext(AdminContext);
       const [showSuccess, setShowSuccess] = useState(false);
 
     const [image, setImage] = useState(null)
     const [preview, setPreview] = useState(null)
-
+    const [product, setProduct] = useState(null)
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         category: "",
         brand: "",
+        price: ""
     })
     const handleChange = (e) => {
       const { name, value } = e.target
@@ -61,7 +64,7 @@ export default function AddProductModal({showModal, setShowModal}) {
     const removeSpec = (index) => {
     setSpecs(specs.filter((_, i) => i !== index))
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
      e.preventDefault()
 
      const specifications = {}
@@ -77,11 +80,19 @@ export default function AddProductModal({showModal, setShowModal}) {
       formPayload.append("description", formData.description)
       formPayload.append("category", formData.category)
       formPayload.append("brand", formData.brand)
+      formPayload.append("price", formData.price)
       formPayload.append("specifications", JSON.stringify(specifications))
-
-      console.log("FORM DATA READY", formPayload)
-
-      setShowSuccess(true)
+      try {
+        await addProduct(formPayload)
+        setShowSuccess(true)
+        setProduct(newProduct);
+        setFormData({ name: "", description: "", category: "", brand: "" });
+        setImage(null);
+        setPreview(null);
+        setSpecs([{ key: "", value: "" }]);
+      } catch (error) {
+        console.error(error)
+      }
     }
 
 
@@ -98,9 +109,9 @@ export default function AddProductModal({showModal, setShowModal}) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50" >
         {showSuccess && (<AddedSuccessModal     setShowSuccess={setShowSuccess}
-        onClose={() => setShowModal(false)} product={{ name: formData.name }}/>)}
+        onClose={() => setShowModal(false)} product={product}/>)}
 
-        <div className="bg-white rounded-xl shadow-lg w-[99%] max-w-md relative">
+        <div className="bg-white rounded-xl shadow-lg w-[99%] max-w-md relative max-h-[600px] overflow-y-auto">
             <div className="p-6">
                 <h1 className="text-[22px] font-semibold">Add New Product</h1>
                 <button className="absolute top-3 right-5" onClick={closeModal}>X</button>
@@ -117,17 +128,32 @@ export default function AddProductModal({showModal, setShowModal}) {
                          <label className="text-[14px] font-semibold" htmlFor="category">Category *</label>
                          <select  name="category" value={formData.category} onChange={handleChange}  className="w-full p-3 h-11 rounded-md text-[#A3A2A2] border my-2">
                             <option value="">Select Category</option>
+                              <option value="SmartPhones">Smart Phones</option>
+                              <option value="Wearables">Wearables</option>
+                              <option value="Laptops">Laptops</option>
+                              <option value="Accessories">Accessories</option>
+                              <option value="Gaming">Gaming</option>
+                              <option value="SmartHomes">Smart Homes</option>
+
                          </select>
 
                     </div>
                       <div className="w-1/2">
                          <label className="text-[14px] font-semibold" htmlFor="brand">Brand Name *</label>
-                         <select  name="brand" value={formData.brand} onChange={handleChange}  className="w-full p-3 h-11 rounded-md text-[#A3A2A2] border my-2">
-                            <option value="">Select Brand</option>
-                         </select>
+                         <input name="brand"
+                         value={formData.brand}
+                         onChange={handleChange}
+                         placeholder="Enter brand" 
+                         className="w-full p-3 h-11 rounded-md text-[#A3A2A2] border my-2" type="text" />
 
                     </div>
                 </div>
+
+                <label className="text-[14px] font-semibold" htmlFor="price">Price *</label>
+                <input
+                name="price"
+                value={formData.price} onChange={handleChange} className="w-full p-3 h-11 rounded-md text-[#A3A2A2] border my-2" placeholder="Enter product price" type="number"/>
+
                 
                 <p className="text-[14px] font-semibold mt-4 mb-2"> Product Specification</p>
                 <div className="flex flex-col gap-3">{specs.map((spec, index) => (<div key={index} className="flex gap-3 items-center">

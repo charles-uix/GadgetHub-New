@@ -16,10 +16,13 @@ import { NavLink } from "react-router"
 import { motion, AnimatePresence } from "framer-motion"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
+import LogoutModal from "../../LogoutModal"
 
 export default function Sidebar() {
     const { logout } = useContext(AuthContext)
       const [ menuOpen, setMenuOpen] = useState(false)
+      const [showLogoutModal, setShowLogoutModal] = useState(false)
+
       const toggleMenu = ()=>{
         setMenuOpen(!menuOpen)
       }
@@ -55,7 +58,7 @@ export default function Sidebar() {
              <NavLink to="/admin/settings" end className={({ isActive }) => `flex items-center gap-2 h-11 pl-5 font-semibold ${isActive ? "border-r-3 border-[#6C4CF1] bg-[#F3F0FF] text-[#6C4CF1]" : "text-[#807D7E]" }`}>
             <IoSettingsOutline size={20} /> Account Settings</NavLink>
 
-             <button onClick={()=> logout()} className={`text-[16px] font-semibold text-[#E60E0E] flex gap-2 w-full h-11 items-center pl-5 pt-8  bg-none border-0 hover:cursor-pointer`}>
+             <button onClick={() => setShowLogoutModal(true)} className={`text-[16px] font-semibold text-[#E60E0E] flex gap-2 w-full h-11 items-center pl-5 pt-8  bg-none border-0 hover:cursor-pointer`}>
             <span><PiSignOut size={20} /></span> Sign Out
             </button>
         </div>
@@ -77,6 +80,12 @@ export default function Sidebar() {
                 )}
               </AnimatePresence>
 
+      {showLogoutModal && (
+        <LogoutModal
+          onClose={() => setShowLogoutModal(false)}
+          onConfirm={logout}
+        />
+      )}
 
     </div>
   )

@@ -141,14 +141,14 @@ export default function Header() {
     <div className="flex flex-col w-full">
        {showModal && <ShoppingCartModal showModal={showModal} setShowModal={setShowModal} />}
         <div className="hidden lg:flex bg-[#191C1F] text-white">
-           <div className="flex container mx-auto items-center justify-between w-full h-[7vh] px-5">
+           <div className="flex container mx-auto items-center justify-between w-full h-[60px] px-5">
              <h1><span className="text-[#ACACAC]">Mon-Sat:</span> 9:00 AM - 5:30 PM</h1>
             <h1 className="text-[#ACACAC]">Visit our showroom in 12 Street Address City, Lagos</h1>
             <h1>Call Us: (+234) 01234 5678</h1>
            </div>
         </div>
 
-        <div className="container mx-auto flex items-center justify-between gap-0 lg:gap-25 h-[14vh] py-10 lg:py-2 px-5">
+        <div className="container mx-auto flex items-center justify-between gap-0 lg:gap-25 h-[100px] py-10 lg:py-2 px-5">
 
                <div className="flex justify-between w-full lg:hidden">
                <div className="flex gap-2 items-center">
@@ -237,7 +237,7 @@ export default function Header() {
         </div>
 
         <div className="flex bg-[#191C1F] text-white mt-1">
-            <div className="hidden lg:flex items-center container mx-auto h-[15vh] lg:h-[7vh] text-sm lg:text-lg px-5 gap-8">
+            <div className="hidden lg:flex items-center container mx-auto h-[65px] text-sm lg:text-lg px-5 gap-8">
                 {filters.map((filter)=>{
                 return <Link key={filter.id} to={filter.linkTo}>{filter.name}</Link>
             })}

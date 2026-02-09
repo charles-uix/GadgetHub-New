@@ -12,14 +12,14 @@ export default function ProductsTable({products, onDelete}) {
         <p>Actions</p>
         </div>
 
-         {products.map((product) => (
+         {products && products.length > 0 ? products.map((product) => (
         <div
-          key={product.id}
+          key={product._id}
           className="grid grid-cols-6 gap-4 px-5 py-4 items-center border-t border-[#E7E4E4] text-sm"
         >
           <div>
             <img
-              src={product.image}
+              src={product.image?.url}
               alt={product.name}
               className="w-[50px] h-[50px] object-cover rounded-md bg-gray-100"
             />
@@ -53,12 +53,13 @@ export default function ProductsTable({products, onDelete}) {
             <button  className="text-[#302E2E] hover:underline">
               Edit
             </button>
-            <button   onClick={() => onDelete(product)} className="text-[#E60E0E] hover:underline">
+            <button  onClick={() => onDelete(product._id)} className="text-[#E60E0E] hover:underline">
               Delete
             </button>
           </div>
         </div>
-      ))}
+      )) : <p className="px-5 py-4 text-gray-500">No products found</p>
+      }
     </div>
   )
 }

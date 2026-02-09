@@ -28,13 +28,13 @@ export default function CartPage() {
        <div className="cartFrame">
         <h1>Shopping Cart</h1>
       </div>
-      <div className="flex justify-between gap-5 px-5 py-5">
-      <div className="w-2/3">
+      <div className="flex flex-col lg:flex justify-between gap-5 px-5 py-5">
+      <div className="w-full lg:w-2/3">
          {cart.map((item) => (
         <CartItem key={item.id} {...item}/>
        ))}
       </div>
-      <div className="w-1/3">
+      <div className="w-full lg:w-1/3">
          <OrderSummary />
       </div>
       </div>

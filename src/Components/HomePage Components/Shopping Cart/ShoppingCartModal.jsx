@@ -27,7 +27,7 @@ export default function ShoppingCartModal({showModal, setShowModal}) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 ">
-        <div className="bg-white rounded-xl shadow-lg w-[99%] max-w-md p-6 relative">
+        <div className="bg-white rounded-md shadow-lg w-[99%] max-w-md p-6 relative">
           <h1 className="w-full py-3 text-[16px] font-semibold">Shopping Cart <span className="text-[16px] text-[#5F6C72]">({cart.length})</span></h1>
           <button className="absolute top-3 right-5" onClick={closeModal}>X</button>
            <div className="p-4 border-t border-[#E5E5E5] border-b flex flex-col gap-3 max-h-[350px] overflow-y-auto">

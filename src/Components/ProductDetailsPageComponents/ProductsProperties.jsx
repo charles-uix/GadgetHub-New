@@ -142,7 +142,7 @@ export default function ProductsProperties({product}) {
             </button>
           </div>
 
-          <div className="flex justify-between items-center my-4 lg:gap-3">
+          <div className="flex justify-between gap-2 items-center my-4 lg:gap-3">
             {[...imageGallery].map((img, idx) => (
               <button
                 key={idx}

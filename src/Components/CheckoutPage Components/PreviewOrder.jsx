@@ -16,7 +16,7 @@ export default function PreviewOrder({ orderData, cart, onBack, onConfirm }) {
           <label className="text-[14px]" htmlFor="">Phone Number</label>
           <p className="block w-full my-2 px-3 py-2 text-[#9F9E9E] border border-[#E8E6E6] rounded-md">{orderData.customer.phone}</p>
           <label className="text-[14px]" htmlFor="">Email Address</label>
-          <p className="block w-full my-2 px-3 py-2 text-[#9F9E9E] border border-[#E8E6E6] rounded-md" >{orderData.customer.address}</p>
+          <p className="block w-full my-2 px-3 py-2 text-[#9F9E9E] border border-[#E8E6E6] rounded-md" >{orderData.customer.email}</p>
           <label className="text-[14px]" htmlFor="">State and City</label>
           <p className="block w-full my-2 px-3 py-2 text-[#9F9E9E] border border-[#E8E6E6] rounded-md"> {orderData.customer.state}, {orderData.customer.city}</p>
         </section>
@@ -30,7 +30,7 @@ export default function PreviewOrder({ orderData, cart, onBack, onConfirm }) {
 
         <section className="mb-4">
           <h2 className="font-semibold">Payment Method</h2>
-          <p className="block w-full my-2 px-3 py-2 text-[#9F9E9E] border border-[#E8E6E6] rounded-md">{orderData.paymentMethod.method}</p>
+          <p className="block w-full my-2 px-3 py-2 text-[#9F9E9E] border border-[#E8E6E6] rounded-md">{orderData.paymentMethod}</p>
         </section>
 
         <section className="mb-4">

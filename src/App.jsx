@@ -17,6 +17,7 @@ import Dashboard from "./Components/Admin/Pages/Dashboard"
 import AdminLayout from "./Components/Admin/Layout/AdminLayout"
 import Orders from "./Components/Admin/Pages/Orders"
 import Products from "./Components/Admin/Pages/Products"
+import AdminRoute from "./Components/Admin/components/ProtectAdminRoute"
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
         <Route path="/cartpage" element={<CartPage />} />
         <Route path="/profile" element={<ProtectRoute><Profile /></ProtectRoute>} />
 
-       <Route path="/admin" element={<AdminLayout />}>
+       <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
         <Route index element={<Dashboard />} />
         <Route path="orders" element={<Orders />} />
         <Route path="products" element={<Products />} />
